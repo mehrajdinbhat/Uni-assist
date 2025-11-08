@@ -7,7 +7,7 @@ const reasons = [
     description:
       "Manage all campus services in one unified system, reducing manual processes and delays.",
     image:
-      "https://images.unsplash.com/photo-1581093588401-9e7e0fcd3d0f?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=80", // Modern workspace image
   },
   {
     icon: "🌱",
@@ -15,7 +15,7 @@ const reasons = [
     description:
       "Eco-Swap marketplace and smart resource management encourage eco-friendly practices.",
     image:
-      "https://images.unsplash.com/photo-1603052875941-97ff03df9f43?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80", // Eco-friendly nature + green theme
   },
   {
     icon: "🤝",
@@ -23,15 +23,15 @@ const reasons = [
     description:
       "Share study materials, collaborate on projects, and connect with students and faculty easily.",
     image:
-      "https://images.unsplash.com/photo-1562887009-44b0f1711c48?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1556761175-4b46a572b786?auto=format&fit=crop&w=1200&q=80", // Team collaboration / meeting
   },
 ];
 
 const WhyUniAssist = () => {
   return (
-    <section className=" text-white py-20">
+    <section className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-6">
-        <h2 className="text-4xl font-bold text-cyan-400 text-center mb-12">
+        <h2 className="text-4xl font-bold text-cyan-600 text-center mb-12">
           Why Choose Uni-Assist?
         </h2>
 
@@ -53,13 +53,13 @@ const WhyUniAssist = () => {
 
             {/* Text */}
             <div className="md:w-1/2 w-full md:px-12 mt-6 md:mt-0 flex flex-col justify-center">
-              <div className="flex items-center mb-2 text-3xl">
+              <div className="flex items-center mb-2 text-3xl text-black">
                 {reason.icon}
               </div>
-              <h3 className="text-3xl font-bold text-cyan-400 mb-4">
+              <h3 className="text-3xl font-bold text-cyan-600 mb-4">
                 {reason.title}
               </h3>
-              <p className="text-blue-200 text-lg">{reason.description}</p>
+              <p className="text-gray-800 text-lg">{reason.description}</p>
             </div>
           </div>
         ))}

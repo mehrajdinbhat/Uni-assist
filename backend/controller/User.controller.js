@@ -134,3 +134,9 @@ export const logout = (req, res) => {
 
   return res.status(200).json({ message: "User logged out successfully" });
 };
+
+export const getMyProfile = async (req, res) => {
+  const user = await req.user;
+  res.status(200).json(user);
+};
+

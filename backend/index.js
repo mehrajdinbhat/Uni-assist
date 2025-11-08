@@ -4,6 +4,11 @@ import mongoose from "mongoose";
 
 import userRoute from "./routes/user.route.js";
 import productRoute from "./routes/product.route.js"
+import materialRoute from "./routes/material.route.js";
+import guestHouseRoutes from "./routes/guesthouse.route.js"
+import adminRoutes from "./routes/admin.route.js";
+
+
 
 import fileUpload from "express-fileupload";
 import { v2 as cloudinary } from "cloudinary";
@@ -23,7 +28,7 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(
   cors({
-    origin: ["http://localhost:5173"],
+    origin: ["http://localhost:5173", "http://localhost:5174"],
     credentials: true,
   })
 );
@@ -48,6 +53,11 @@ try {
 // defining routes
 app.use("/api/users", userRoute);
 app.use("/api/products",productRoute);
+app.use("/api", materialRoute);
+app.use("/api/guesthouse", guestHouseRoutes);
+app.use("/api/admin", adminRoutes);
+
+
 
 // cloudinary  configuration
 cloudinary.config({

@@ -24,7 +24,8 @@ import toast from'react-hot-toast'
     try {
       const { data } = await axios.post(
         "http://localhost:4001/api/users/login",
-        {email,password}
+        { email, password },
+        { withCredentials: true }
       );
       console.log(data)
       toast.success("user login  sucessfully")
@@ -34,6 +35,7 @@ import toast from'react-hot-toast'
 
     } catch (error) {
       console.log(error)
+       toast.error("please fill valid credentials");
     }
 
 

@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 
-const Hero= () => {
+const Hero = () => {
   const slides = [
     {
       image:
-        "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1920&q=80",
+        "https://images.unsplash.com/photo-1509099836639-18ba1795216d?auto=format&fit=crop&w=1920&q=80",
       title: "Welcome to Uni-Assist",
       subtitle: "A Smart Digital Platform for Students, Faculty & Visitors",
     },
@@ -33,58 +33,69 @@ const Hero= () => {
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrent((prev) => (prev === slides.length - 1 ? 0 : prev + 1));
-    }, 5000);
+    }, 6000);
     return () => clearInterval(timer);
   }, [slides.length]);
 
   return (
-    <section className="relative w-full h-screen overflow-hidden bg-gray">
-      {slides.map((slide, index) => (
-        <div
-          key={index}
-          className={`absolute inset-0 transition-opacity duration-1000 ease-in-out transform ${
-            index === current ? "opacity-100 scale-100" : "opacity-0 scale-105"
-          }`}
-        >
-          {/* Background Image */}
+    <section className="relative w-full h-screen overflow-hidden bg-gray-900">
+      {slides.map((slide, index) => {
+        const isActive = index === current;
+        return (
           <div
-            className="absolute inset-0 bg-cover bg-center"
-            style={{ backgroundImage: `url(${slide.image})` }}
-          ></div>
+            key={index}
+            className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${
+              isActive
+                ? "opacity-100 z-20 pointer-events-auto"
+                : "opacity-0 z-10 pointer-events-none"
+            }`}
+          >
+            {/* Use <img> for reliable background rendering */}
+            <img
+              src={slide.image}
+              alt={slide.title}
+              className="absolute inset-0 w-full h-full object-cover brightness-75"
+              loading={index === 0 ? "eager" : "lazy"}
+            />
 
-          {/* Gradient Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent"></div>
+            {/* Overlay */}
+            <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/70"></div>
 
-          {/* Text Content */}
-          <div className="relative z-10 flex flex-col items-center justify-center h-full text-center text-white px-6">
-            <h1 className="text-4xl md:text-6xl font-bold text-cyan-400 drop-shadow-lg mb-4 animate-fadeInUp">
-              {slide.title}
-            </h1>
-            <p className="text-lg md:text-2xl text-blue-200 mb-8 max-w-2xl animate-fadeInUp delay-200">
-              {slide.subtitle}
-            </p>
-            <div className="flex gap-4 animate-fadeInUp delay-300">
-              <button className="px-6 py-3 bg-cyan-500 text-black font-semibold rounded-full hover:bg-cyan-400 transition duration-300 shadow-lg">
-                Get Started
-              </button>
-              <button className="px-6 py-3 border border-cyan-400 text-cyan-400 font-semibold rounded-full hover:bg-cyan-400 hover:text-black transition duration-300">
-                Learn More
-              </button>
+            {/* Text Content */}
+            <div className="relative z-30 flex flex-col items-center justify-center h-full px-6 text-center text-white">
+              <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 to-blue-500 drop-shadow-lg">
+                {slide.title}
+              </h1>
+              <p className="text-base sm:text-lg md:text-2xl text-blue-200 mb-10 max-w-2xl leading-relaxed">
+                {slide.subtitle}
+              </p>
+
+              <div className="flex flex-wrap gap-4 justify-center">
+                <button className="px-7 py-3 bg-gradient-to-r from-cyan-400 to-blue-500 text-black font-semibold rounded-full hover:opacity-90 shadow-xl transition-all duration-300 transform hover:scale-105">
+                  Get Started
+                </button>
+                <button className="px-7 py-3 border border-cyan-400 text-cyan-300 font-semibold rounded-full hover:bg-cyan-400 hover:text-black transition-all duration-300 transform hover:scale-105 backdrop-blur-md bg-white/10">
+                  Learn More
+                </button>
+              </div>
             </div>
           </div>
-        </div>
-      ))}
+        );
+      })}
 
-      {/* Navigation Dots */}
-      <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 flex gap-3 z-20">
+      {/* Dots Navigation */}
+      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex gap-3 z-40">
         {slides.map((_, index) => (
           <button
             key={index}
             onClick={() => setCurrent(index)}
-            className={`w-3 h-3 rounded-full transition-all duration-300 ${
-              index === current ? "bg-cyan-400 scale-125" : "bg-blue-900"
+            aria-label={`Go to slide ${index + 1}`}
+            className={`w-3 h-3 rounded-full transition-all duration-200 ${
+              index === current
+                ? "bg-gradient-to-r from-cyan-400 to-blue-500 scale-125 shadow-lg"
+                : "bg-gray-400 hover:bg-gray-300"
             }`}
-          ></button>
+          />
         ))}
       </div>
     </section>
